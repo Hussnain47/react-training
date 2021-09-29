@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import Navbar from "./components/Navbar.js";
+import MainContent from "./components/MainContent.js";
+import Incrementbutton from "./components/Incrementbutton.js";
+import Footer from "./components/Footer.js";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoading: true,
+    };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState(() => {
+        return {
+          isLoading: false,
+        };
+      });
+    }, 1500);
+  }
+
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <MainContent />
+        <Incrementbutton isLoading={this.state.isLoading} />
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;
